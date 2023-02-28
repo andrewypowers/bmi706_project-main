@@ -37,7 +37,7 @@ subset = subset[subset.vaccine.isin(vaccine)]
 ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
     alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency'),
-    alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom'), title = 'Event type'),
+    alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = 'Event type'),
     alt.Color('vaccine:N')
     ).properties(
         title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type'
