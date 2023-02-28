@@ -15,13 +15,13 @@ subset = df[df.serious == serious]
 
 #add vaccine list
 vaccine_list = [
-    COVID,
-    DTaP,
-    Hepatitis B,
-    Influenza,
-    Meningococcal,
-    MMRV,
-    Pneumococcal,
+    'COVID',
+    'DTaP',
+    'Hepatitis B',
+    'Influenza',
+    'Meningococcal',
+    'MMRV',
+    'Pneumococcal',
 ]
 
 vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = vaccine_list)
