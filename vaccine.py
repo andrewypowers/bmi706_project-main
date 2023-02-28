@@ -37,7 +37,7 @@ ae_freq = alt.Chart(subset
     ).encode(
         x = alt.X('event_type:N', title = 'Event type'),
         y = alt.Y('count:Q', title = 'Frequency'),
-        color = Color('vaccine')
+        color = 'vaccine'
     ).properties(
         title = ''
     )
