@@ -39,6 +39,6 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.Color('vaccine:N')
     ).properties(
         title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type'
-    ).configure_title(color = 'white')
+    ).configure_header(color = 'white')
 
 st.altair_chart(ae_freq, use_container_width = False)
