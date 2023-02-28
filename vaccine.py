@@ -39,11 +39,6 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency'),
     alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = 'Event type'),
     alt.Color('vaccine:N')
-    ).configure_header(
-    titleColor = 'green',
-    titleFontSize = 14,
-    labelColor = 'red',
-    labelFontSize = 14
     ).properties(
         title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type'
     )
