@@ -31,6 +31,21 @@ vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = No
 subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
 
+#total adverse event per vaccine chart
+ae_total = alt.Chart(subset).mark_bar(
+    ).transform_joinaggregate(
+        total_event = 'sum(count)'
+    ).transform_calculate(
+        event_percent = ' datum.count / datum.total_event'
+    ).encode(
+        alt.X('count:Q'),
+        alt.Y('vaccine:N', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Total adverse event frequency (log scale)'),
+        alt.Color('vaccine:N')
+        ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine'
+        ).configure_title(color = 'white')
+
+st.altair_chart(ae_prop, use_container_width = False)
+
 #adverse event frequency chart
 ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
@@ -47,7 +62,7 @@ ae_prop = alt.Chart(subset).mark_bar(
     ).transform_joinaggregate(
         total_event = 'sum(count)'
     ).transform_calculate(
-        event_percent = ' datum.count / datum.total_event'
+        event_percent = '100 * datum.count / datum.total_event'
     ).encode(
         alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
         alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Proportion of adverse events (%, log scale)'),
