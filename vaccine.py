@@ -6,7 +6,6 @@ import streamlit as st
 df = pd.read_csv('vaccine_data_clean.csv'
     ).groupby(['vaccine', 'event_type', 'serious'], as_index = False
     ).agg({'count' : 'sum'})
-print(df)
 
 #create streamlit app
 #add title
@@ -33,7 +32,6 @@ subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
 
 #plot chart
-
 ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
     alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency'),
