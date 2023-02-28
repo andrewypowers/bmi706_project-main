@@ -34,7 +34,7 @@ subset = subset[subset.vaccine.isin(vaccine)]
 #total adverse event per vaccine chart
 ae_total = alt.Chart(subset).mark_bar(
     ).transform_aggregate(
-        total_count = 'count'
+        total_count = 'count',
         groupby = ['vaccine']
     ).encode(
         alt.X('total_count:Q'),
