@@ -35,9 +35,9 @@ subset = subset[subset.vaccine.isin(vaccine)]
 #plot chart
 
 ae_freq = alt.Chart(subset).mark_bar().encode(
-        x = alt.X('vaccine:N', title = ''),
-        y = alt.Y('count:Q', title = 'Frequency'),
-        column = alt.Column('event_type:N'),
+        x = alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False), title = ''),
+        y = alt.Y('count:Q', scale = alt.Scale(type = 'log'), title = 'Frequency'),
+        column = alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom')),
         color = alt.Color('vaccine:N')
     ).properties(
         title = ''
