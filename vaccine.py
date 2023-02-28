@@ -32,8 +32,8 @@ subset = subset[subset.vaccine.isin(vaccine)]
 ae_freq = alt.Chart(subset
     ).mark_rect(
     ).encode(
-        x = alt.X(event_type),
-        y = alt.Y(count)
+        x = alt.X('event_type:N'),
+        y = alt.Y('count:Q')
     ).properties(
         title = ''
     )
