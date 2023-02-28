@@ -33,16 +33,14 @@ subset = subset[subset.vaccine.isin(vaccine)]
 
 #total adverse event per vaccine chart
 ae_total = alt.Chart(subset).mark_bar(
-    ).transform_joinaggregate(
-        total_event = 'sum(count)'
-    ).transform_calculate(
-        event_percent = ' datum.count / datum.total_event'
+    ).transform_aggregate(
+        total_count = 'count'
+        groupby = ['vaccine']
     ).encode(
-        alt.X('count:Q'),
+        alt.X('total_count:Q'),
         alt.Y('vaccine:N', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Total adverse event frequency (log scale)'),
         alt.Color('vaccine:N')
-        ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine'
-        ).configure_title(color = 'white')
+        ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
 
 st.altair_chart(ae_prop, use_container_width = False)
 
@@ -52,8 +50,7 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency (log scale)'),
     alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
     alt.Color('vaccine:N')
-    ).properties(title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type'
-    ).configure_title(color = 'white')
+    ).properties(title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type')
 
 st.altair_chart(ae_freq, use_container_width = False)
 
@@ -68,7 +65,6 @@ ae_prop = alt.Chart(subset).mark_bar(
         alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Proportion of adverse events (%, log scale)'),
         alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('vaccine:N')
-        ).properties(title = 'Adverse event proportion, filtered by vaccine and seriousness, stratified by event type'
-        ).configure_title(color = 'white')
+        ).properties(title = 'Adverse event proportion, filtered by vaccine and seriousness, stratified by event type')
 
 st.altair_chart(ae_prop, use_container_width = False)
