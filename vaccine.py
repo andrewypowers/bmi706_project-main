@@ -32,13 +32,13 @@ subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
 
 #total adverse event per vaccine chart
-ae_total = alt.Chart(subset).mark_bar(
+ae_total = alt.Chart(subset
     ).transform_aggregate(
         total_count = 'count',
         groupby = ['vaccine']
-    ).encode(
+    ).mark_bar().encode(
         alt.X('total_count:Q'),
-        alt.Y('vaccine:N', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Total adverse event frequency (log scale)'),
+        alt.Y('vaccine:N', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Adverse event frequency (log scale)'),
         alt.Color('vaccine:N')
         ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
 
