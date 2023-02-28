@@ -40,7 +40,7 @@ ae_total = alt.Chart(subset
         alt.X('total_count:Q'),
         alt.Y('vaccine:N', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Adverse event frequency (log scale)'),
         alt.Color('vaccine:N')
-        ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
+    ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
 
 st.altair_chart(ae_total, use_container_width = False)
 
@@ -65,6 +65,6 @@ ae_prop = alt.Chart(subset).mark_bar(
         alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Proportion of adverse events (%, log scale)'),
         alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('vaccine:N')
-        ).properties(title = 'Adverse event proportion, filtered by vaccine and seriousness, stratified by event type')
+    ).properties(title = 'Adverse event proportion, filtered by vaccine and seriousness, stratified by event type')
 
 st.altair_chart(ae_prop, use_container_width = False)
