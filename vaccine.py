@@ -42,7 +42,7 @@ ae_total = alt.Chart(subset).mark_bar(
         alt.Color('vaccine:N')
         ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
 
-st.altair_chart(ae_prop, use_container_width = False)
+st.altair_chart(ae_total, use_container_width = False)
 
 #adverse event frequency chart
 ae_freq = alt.Chart(subset).mark_bar().encode(
