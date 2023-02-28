@@ -37,8 +37,8 @@ ae_total = alt.Chart(subset
         total_count = 'sum(count)',
         groupby = ['vaccine']
     ).mark_bar().encode(
-        alt.X('total_count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False)),
-        alt.Y('vaccine:N', title = 'Adverse event frequency (log scale)'),
+        alt.X('total_count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Adverse event frequency (log scale)'),
+        alt.Y('vaccine:N', title = ''),
         alt.Color('vaccine:N')
     ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
 
