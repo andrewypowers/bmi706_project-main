@@ -24,7 +24,7 @@ vaccine_list = [
     'Pneumococcal',
 ]
 
-vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = vaccine_list)
+vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = None)
 subset = subset[subset.vaccine.isin(vaccine)]
 
 #
