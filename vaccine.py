@@ -14,7 +14,6 @@ st.write('## Vaccination')
 
 #add seriousness selector
 serious = st.radio(label = 'Serious', options = ('Yes', 'No'))
-subset = df[df.serious == serious]
 
 #add vaccine list
 vaccine_list = [
@@ -28,15 +27,18 @@ vaccine_list = [
 ]
 
 vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = None)
+
+#define subset
+subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
 
-#
+#plot chart
 
 ae_freq = alt.Chart(subset).mark_bar().encode(
         x = alt.X('event_type:N', title = 'Event type'),
         y = alt.Y('count:Q', title = 'Frequency'),
-        xOffset = 'vaccine',
-        color = 'vaccine'
+        xOffset = 'vaccine:N',
+        color = 'vaccine:N'
     ).properties(
         title = ''
     )
