@@ -31,14 +31,24 @@ vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = No
 subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
 
-#plot chart
+#adverse event frequency chart
 ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
     alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency (log scale)'),
     alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
     alt.Color('vaccine:N')
-    ).properties(
-        title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type'
+    ).properties(title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type'
     ).configure_title(color = 'white')
 
 st.altair_chart(ae_freq, use_container_width = False)
+
+#adverse event proportion chart
+ae_prop = alt.Chart(subset).mark_bar().encode(
+    alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
+    alt.Y('count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Proportion'),
+    alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
+    alt.Color('vaccine:N')
+    ).properties(title = 'Adverse event proportion, filtered by vaccine and seriousness, stratified by event type'
+    ).configure_title(color = 'white')
+
+st.altair_chart(ae_prop, use_container_width = False)
