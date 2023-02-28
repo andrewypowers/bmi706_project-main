@@ -41,4 +41,4 @@ ae_freq = alt.Chart(subset
         title = ''
     )
 
-st.altair_chart(population_chart, use_container_width = True)
+st.altair_chart(ae_freq, use_container_width = True)
