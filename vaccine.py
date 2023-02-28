@@ -17,7 +17,7 @@ subset = df[df.serious == serious]
 vaccine_list = [
     'COVID',
     'DTaP',
-    'Hepatitis B',
+    'Hepatitis_B',
     'Influenza',
     'Meningococcal',
     'MMRV',
