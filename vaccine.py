@@ -50,7 +50,7 @@ ae_prop = alt.Chart(subset).mark_bar(
         event_percent = ' datum.count / datum.total_event'
     ).encode(
         alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
-        alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Proportion'),
+        alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Proportion of adverse events (%)'),
         alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('vaccine:N')
         ).properties(title = 'Adverse event proportion, filtered by vaccine and seriousness, stratified by event type'
