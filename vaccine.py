@@ -1,9 +1,13 @@
+import numpy as np
 import altair as alt
 import pandas as pd
 import streamlit as st
 
 #load data
-df = pd.read_csv('vaccine_data_clean.csv')
+df = pd.read_csv('vaccine_data_clean.csv'
+    ).groupby(['vaccine', 'event_type', 'serious']
+    ).agg({'count' : np.sum}
+    ).reset_index()
 
 #create streamlit app
 #add title
