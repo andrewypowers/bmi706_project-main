@@ -36,7 +36,7 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('sex:N', axis = alt.Axis(title = None, labels = False)),
     alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events (log scale)'),
     alt.Column('age:O', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
-    alt.Color('sex:N', legend = None)
+    alt.Color('sex:N')
     ).properties(title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by age and sex')
 
 #adverse event proportion chart
@@ -49,7 +49,7 @@ ae_prop = alt.Chart(subset).mark_bar(
         alt.X('sex:N', axis = alt.Axis(title = None, labels = False)),
         alt.Y('age_sex_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events (log scale)'),
         alt.Column('age:O', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
-        alt.Color('sex:N', legend = None)
+        alt.Color('sex:N')
     ).properties(title = 'Adverse event percentage, filtered by vaccine and seriousness, stratified by age and sex')
 
 combined_charts = ae_freq & ae_prop
