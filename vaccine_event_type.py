@@ -58,7 +58,7 @@ st.altair_chart(ae_freq, use_container_width = False)
 ae_prop = alt.Chart(subset).mark_bar(
     #).transform_joinaggregate(
     #    total = 'sum(count)'
-    ).transform_aggregate(
+    ).transform_joinaggregate(
         vaccine_total = 'sum(count)',
         groupby = ['vaccine']
     ).transform_calculate(
