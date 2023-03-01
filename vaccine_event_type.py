@@ -9,7 +9,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 
 #create streamlit app
 #add title
-st.write('## Distribution of vaccine adverse events types')
+st.write('## Event type distributions of vaccine adverse events')
 
 #add seriousness selector
 seriousness = st.radio(label = 'Seriousness', options = ('serious', 'non-serious'))
@@ -40,7 +40,7 @@ ae_total = alt.Chart(subset
         alt.X('total_count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Adverse event frequency'),
         alt.Y('vaccine:N', title = ''),
         alt.Color('vaccine:N')
-    ).properties(title = f'Per-vaccine total {seriousness} adverse event frequency')
+    ).properties(title = f'Per-vaccine total frequency of {seriousness} adverse events')
 
 st.altair_chart(ae_total, use_container_width = True)
 
@@ -50,7 +50,7 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.Y('count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events'),
     alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
     alt.Color('vaccine:N', legend = None)
-    ).properties(title = f'Vaccine and event type {seriousness} adverse event frequency')
+    ).properties(title = f'Event-type frequency of {seriousness} adverse events for selected vaccines')
 
 st.altair_chart(ae_freq, use_container_width = False)
 
@@ -62,9 +62,9 @@ ae_prop = alt.Chart(subset).mark_bar(
         event_percent = '100 * datum.count / datum.total'
     ).encode(
         alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
-        alt.Y('event_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events'),
+        alt.Y('event_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Per-vaccine percentage of adverse events'),
         alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('vaccine:N', legend = None)
-    ).properties(title = f'Per-vaccine, per-event-type {seriousness} adverse event percentage')
+    ).properties(title = f'Event-type distribution of {seriousness} adverse events for selected vaccines')
 
 st.altair_chart(ae_prop, use_container_width = False)
