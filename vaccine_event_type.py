@@ -60,7 +60,7 @@ ae_prop = alt.Chart(subset).mark_bar(
     #    total = 'sum(count)'
     ).transform_aggregate(
         total = 'sum(count)',
-        groupby = ['vaccine', 'event_type']
+        groupby = ['vaccine']
     ).transform_calculate(
         event_percent = '100 * datum.count / datum.total'
     ).encode(
