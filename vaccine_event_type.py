@@ -50,7 +50,7 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.Y('count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events'),
     alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
     alt.Color('vaccine:N', legend = None)
-    ).properties(title = 'Per-vaccine, per-event-type {seriousness} adverse event frequency')
+    ).properties(title = f'Per-vaccine, per-event-type {seriousness} adverse event frequency')
 
 st.altair_chart(ae_freq, use_container_width = False)
 
@@ -65,6 +65,6 @@ ae_prop = alt.Chart(subset).mark_bar(
         alt.Y('event_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events'),
         alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('vaccine:N', legend = None)
-    ).properties(title = 'Per-vaccine, per-event-type {seriousness} adverse event percentage')
+    ).properties(title = f'Per-vaccine, per-event-type {seriousness} adverse event percentage')
 
 st.altair_chart(ae_prop, use_container_width = False)
