@@ -4,7 +4,7 @@ import streamlit as st
 
 #load data
 df = pd.read_csv('vaccine_data_clean.csv'
-    ).groupby(['vaccine', 'age', 'sex'], as_index = False
+    ).groupby(['vaccine', 'age', 'sex', 'serious'], as_index = False
     ).agg({'count' : 'sum'})
 
 #create streamlit app
