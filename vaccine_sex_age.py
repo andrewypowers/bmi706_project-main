@@ -4,7 +4,7 @@ import streamlit as st
 
 #load data
 df = pd.read_csv('vaccine_data_clean.csv'
-    ).groupby(['vaccine', 'age', 'sex', 'serious'], as_index = False
+    ).groupby(['vaccine', 'age', 'sex', 'seriousness'], as_index = False
     ).agg({'count' : 'sum'})
 
 #create streamlit app
@@ -12,7 +12,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 st.write('## Demographic distributions of vaccine adverse events')
 
 #add seriousness selector
-serious = st.radio(label = 'Serious', options = ('Yes', 'No'))
+seriousness = st.radio(label = 'Serious', options = ('serious', 'non-serious'))
 
 #add vaccine list
 vaccine_list = [
@@ -28,7 +28,7 @@ vaccine_list = [
 vaccine = st.radio(label = 'Vaccine', options = vaccine_list)
 
 #define subset
-subset = df[df.serious == serious]
+subset = df[df.seriousness == seriousness]
 subset = subset[subset.vaccine == vaccine]
 
 #adverse event frequency chart

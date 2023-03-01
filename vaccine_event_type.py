@@ -12,7 +12,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 st.write('## Distribution of vaccine adverse events types')
 
 #add seriousness selector
-serious = st.radio(label = 'Seriousness', options = ('serious', 'non-serious'))
+seriousness = st.radio(label = 'Seriousness', options = ('serious', 'non-serious'))
 
 #add vaccine list
 vaccine_list = [
@@ -28,7 +28,7 @@ vaccine_list = [
 vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = None)
 
 #define subset
-subset = df[df.seriousness == serious]
+subset = df[df.seriousness == seriousness]
 subset = subset[subset.vaccine.isin(vaccine)]
 
 #total adverse event per vaccine chart
@@ -40,7 +40,7 @@ ae_total = alt.Chart(subset
         alt.X('total_count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Adverse event frequency'),
         alt.Y('vaccine:N', title = ''),
         alt.Color('vaccine:N')
-    ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
+    ).properties(title = f'Total {seriousness} adverse event frequency, for the {vaccine} vaccine(s)')
 
 st.altair_chart(ae_total, use_container_width = True)
 
