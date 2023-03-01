@@ -9,7 +9,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 
 #create streamlit app
 #add title
-st.write('## Demographic distributions of vaccine adverse events')
+st.write('## Demographic distributions of vaccine adverse events from 1990 to 2022')
 
 #add seriousness selector
 seriousness = st.radio(label = 'Serious', options = ('serious', 'non-serious'))
@@ -42,12 +42,13 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
 #adverse event proportion chart
 ae_prop = alt.Chart(subset).mark_bar(
     ).transform_joinaggregate(
-        total = 'sum(count)'
+        sex_total = 'sum(count)'
+        groupby = ['sex']
     ).transform_calculate(
-        age_sex_percent = '100 * datum.count / datum.total'
+        sex_percent = '100 * datum.count / datum.sex_total'
     ).encode(
         alt.X('sex:N', axis = alt.Axis(title = None, labels = False)),
-        alt.Y('age_sex_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events'),
+        alt.Y('sex_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events'),
         alt.Column('age:O', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('sex:N')
     ).properties(title = f'Age and sex distribution of {vaccine} vaccine {seriousness} adverse events')

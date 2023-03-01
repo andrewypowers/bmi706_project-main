@@ -9,7 +9,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 
 #create streamlit app
 #add title
-st.write('## Event-type distributions of vaccine adverse events')
+st.write('## Event-type distributions of vaccine adverse events from 1990 to 2022')
 
 #add seriousness selector
 seriousness = st.radio(label = 'Seriousness', options = ('serious', 'non-serious'))
@@ -56,8 +56,6 @@ st.altair_chart(ae_freq, use_container_width = False)
 
 #adverse event proportion chart
 ae_prop = alt.Chart(subset).mark_bar(
-    #).transform_joinaggregate(
-    #    total = 'sum(count)'
     ).transform_joinaggregate(
         vaccine_total = 'sum(count)',
         groupby = ['vaccine']
