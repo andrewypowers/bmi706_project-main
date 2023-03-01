@@ -37,7 +37,7 @@ ae_total = alt.Chart(subset
         total_count = 'sum(count)',
         groupby = ['vaccine']
     ).mark_bar().encode(
-        alt.X('total_count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Adverse event frequency (log scale)'),
+        alt.X('total_count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Adverse event frequency'),
         alt.Y('vaccine:N', title = ''),
         alt.Color('vaccine:N')
     ).properties(title = 'Total adverse event frequency, filtered by seriousness, stratified by vaccine')
@@ -47,7 +47,7 @@ st.altair_chart(ae_total, use_container_width = True)
 #adverse event frequency chart
 ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
-    alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events (log scale)'),
+    alt.Y('count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events'),
     alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
     alt.Color('vaccine:N', legend = None)
     ).properties(title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by event type')
@@ -62,7 +62,7 @@ ae_prop = alt.Chart(subset).mark_bar(
         event_percent = '100 * datum.count / datum.total'
     ).encode(
         alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
-        alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events (log scale)'),
+        alt.Y('event_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events'),
         alt.Column('event_type:N', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('vaccine:N', legend = None)
     ).properties(title = 'Adverse event percentage, filtered by vaccine and seriousness, stratified by event type')
