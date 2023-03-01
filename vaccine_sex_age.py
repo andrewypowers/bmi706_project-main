@@ -34,7 +34,7 @@ subset = subset[subset.vaccine == vaccine]
 #adverse event frequency chart
 ae_freq = alt.Chart(subset).mark_bar().encode(
     alt.X('sex:N', axis = alt.Axis(title = None, labels = False)),
-    alt.Y('count:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events (log scale)'),
+    alt.Y('count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Frequency of adverse events'),
     alt.Column('age:O', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
     alt.Color('sex:N')
     ).properties(title = 'Adverse event frequency, filtered by vaccine and seriousness, stratified by age and sex')
@@ -47,7 +47,7 @@ ae_prop = alt.Chart(subset).mark_bar(
         age_sex_percent = '100 * datum.count / datum.total'
     ).encode(
         alt.X('sex:N', axis = alt.Axis(title = None, labels = False)),
-        alt.Y('age_sex_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events (log scale)'),
+        alt.Y('age_sex_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events'),
         alt.Column('age:O', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('sex:N')
     ).properties(title = 'Adverse event percentage, filtered by vaccine and seriousness, stratified by age and sex')
