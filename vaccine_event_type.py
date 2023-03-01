@@ -22,7 +22,7 @@ vaccine_list = [
     'Influenza',
     'Meningococcal',
     'MMRV',
-    'Pneumococcal',
+    'Pneumococcal'
 ]
 
 vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = None)
@@ -57,9 +57,9 @@ st.altair_chart(ae_freq, use_container_width = False)
 #adverse event proportion chart
 ae_prop = alt.Chart(subset).mark_bar(
     ).transform_joinaggregate(
-        total_event = 'sum(count)'
+        total = 'sum(count)'
     ).transform_calculate(
-        event_percent = '100 * datum.count / datum.total_event'
+        event_percent = '100 * datum.count / datum.total'
     ).encode(
         alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
         alt.Y('event_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events (log scale)'),

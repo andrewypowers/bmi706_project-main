@@ -22,14 +22,14 @@ vaccine_list = [
     'Influenza',
     'Meningococcal',
     'MMRV',
-    'Pneumococcal',
+    'Pneumococcal'
 ]
 
 vaccine = st.radio(label = 'Vaccine', options = vaccine_list)
 
 #define subset
 subset = df[df.serious == serious]
-subset = subset[subset.vaccine.isin(vaccine)]
+subset = subset[subset.vaccine == vaccine]
 
 #adverse event frequency chart
 ae_freq = alt.Chart(subset).mark_bar().encode(
@@ -44,10 +44,10 @@ ae_prop = alt.Chart(subset).mark_bar(
     ).transform_joinaggregate(
         total = 'sum(count)'
     ).transform_calculate(
-        age_percent = '100 * datum.count / datum.total'
+        age_sex_percent = '100 * datum.count / datum.total'
     ).encode(
         alt.X('sex:N', axis = alt.Axis(title = None, labels = False)),
-        alt.Y('age_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events (log scale)'),
+        alt.Y('age_sex_percent:Q', scale = alt.Scale(type = 'log'), axis = alt.Axis(grid = False), title = 'Percentage of adverse events (log scale)'),
         alt.Column('age:O', header = alt.Header(titleOrient = 'bottom', labelOrient = 'bottom', labelColor = 'white'), title = ''),
         alt.Color('sex:N', legend = None)
     ).properties(title = 'Adverse event percentage, filtered by vaccine and seriousness, stratified by age and sex')
