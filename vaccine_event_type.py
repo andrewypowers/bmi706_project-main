@@ -4,7 +4,7 @@ import streamlit as st
 
 #load data
 df = pd.read_csv('vaccine_data_clean.csv'
-    ).groupby(['vaccine', 'event_type', 'serious', 'year'], as_index = False
+    ).groupby(['vaccine', 'event_type', 'serious'], as_index = False
     ).agg({'count' : 'sum'})
 
 #create streamlit app
@@ -12,7 +12,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 st.write('## Distribution of vaccine adverse events types')
 
 #add seriousness selector
-serious = st.radio(label = 'Serious', options = ('Yes', 'No'))
+serious = st.radio(label = 'Seriousness', options = ('Serious', 'Non-serious'))
 
 #add vaccine list
 vaccine_list = [
@@ -27,13 +27,9 @@ vaccine_list = [
 
 vaccine = st.multiselect(label = 'Vaccine', options = vaccine_list, default = None)
 
-#add year range selector
-year = st.slider(label = 'Year', min_value = 1990, max_value = 2022)
-
 #define subset
 subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
-subset = df[df['year'] == year]
 
 #total adverse event per vaccine chart
 ae_total = alt.Chart(subset
