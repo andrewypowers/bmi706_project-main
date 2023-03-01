@@ -9,7 +9,7 @@ df = pd.read_csv('vaccine_data_clean.csv'
 
 #create streamlit app
 #add title
-st.write('## Vaccination')
+st.write('## Vaccination adverse events')
 
 #add seriousness selector
 serious = st.radio(label = 'Serious', options = ('Yes', 'No'))
