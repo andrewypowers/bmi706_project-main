@@ -42,7 +42,7 @@ ae_freq = alt.Chart(subset).mark_bar().encode(
 #adverse event proportion chart
 ae_prop = alt.Chart(subset).mark_bar(
     ).transform_joinaggregate(
-        sex_total = 'sum(count)'
+        sex_total = 'sum(count)',
         groupby = ['sex']
     ).transform_calculate(
         sex_percent = '100 * datum.count / datum.sex_total'
