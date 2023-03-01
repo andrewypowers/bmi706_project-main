@@ -62,7 +62,7 @@ ae_prop = alt.Chart(subset).mark_bar(
         vaccine_total = 'sum(count)',
         groupby = ['vaccine']
     ).transform_calculate(
-        event_percent = '100 / datum.vaccine_total'
+        event_percent = '100 * datum.count / datum.vaccine_total'
     ).encode(
         alt.X('vaccine:N', axis = alt.Axis(title = None, labels = False)),
         alt.Y('event_percent:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = 'Per-vaccine percentage of adverse events'),
