@@ -33,7 +33,7 @@ year = st.slider(label = 'Year', min_value = 1990, max_value = 2022)
 #define subset
 subset = df[df.serious == serious]
 subset = subset[subset.vaccine.isin(vaccine)]
-subset = df[df.year == year]
+subset = df[df['year'] == year]
 
 #total adverse event per vaccine chart
 ae_total = alt.Chart(subset
