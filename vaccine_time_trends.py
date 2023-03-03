@@ -53,7 +53,7 @@ ae_total = alt.Chart(subset
     ).mark_area().encode(
         alt.Y('sum(count):Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = '# Adverse events'),
         alt.X('year:Q', title = '', axis=alt.Axis(format='.0f')),
-        alt.Color('grouping_variable:N', title = grouping_variable, scale=alt.Scale(scheme='dark2'))
+        alt.Color('grouping_variable:N', title = grouping_variable, scale=alt.Scale(scheme='magma'))
     ).properties(title = f'Total number of adverse events by year')
 
 
@@ -65,7 +65,7 @@ ae_count = alt.Chart(subset
     ).mark_line().encode(
         alt.Y('count:Q', scale = alt.Scale(type = 'linear'), axis = alt.Axis(grid = False), title = '# Adverse events'),
         alt.X('year:Q', title = '', axis=alt.Axis(format='.0f')),
-        alt.Color('grouping_variable:N', title = grouping_variable, scale=alt.Scale(scheme='dark2'))
+        alt.Color('grouping_variable:N', title = grouping_variable, scale=alt.Scale(scheme='magma'))
     ).properties(title = f'Count of adverse events per {grouping_variable} by year')
 
 
