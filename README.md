@@ -15,6 +15,7 @@ The Vaccine Adverse Events Explorer (VAEE) is an interactive web-hosted app writ
 4) "Fork sample app"
 5) Copy the name of this repo and the file name and insert into the blanks
 
-## The VAEE was created by Andrew Powers and Malte Schmieding a.k.a the Back Row Bandits for BMI706
+## Who dunnit?
+The VAEE was created by Andrew Powers and Malte Schmieding a.k.a the Back Row Bandits for BMI706
 
 
